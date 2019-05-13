@@ -1,0 +1,9 @@
+export { ContactFormComponent } from './contact-form/contact-form.component';
+export { HeaderComponent } from './header/header.component';
+export { LayoutComponent } from './layout/layout.component';
+export { PriceBlockComponent } from './price-block/price-block.component';
+export { StudentsSignUpComponent } from './students-sign-up/students-sign-up.component';
+export { SchoolsSignUpComponent } from './schools-sign-up/schools-sign-up.component';
+export { LiteracyComponent } from './literacy/literacy.component';
+export { NumeracyComponent } from './numeracy/numeracy.component';
+export { WritingComponent } from './writing/writing.component';

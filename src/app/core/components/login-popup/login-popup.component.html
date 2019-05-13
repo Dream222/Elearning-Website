@@ -1,0 +1,23 @@
+
+    <form class="p-20" fxLayout="column" fxLayoutAlign="center center">
+        <mdc-text-field
+            [(ngModel)]="loginModel.email"
+            label="Email"
+            type="text"
+            name="email"
+            [required]="true"
+            [dense]="false">
+        </mdc-text-field>
+
+        <mdc-text-field
+            [(ngModel)]="loginModel.password"
+            type="password"
+            name="password"
+            label="Password"
+            [required]="true">
+        </mdc-text-field>
+        <mat-dialog-actions>
+            <button [disabled]="!loginModel.email || !loginModel.password" (click)="login()">Log in
+            </button>
+        </mat-dialog-actions>
+    </form>

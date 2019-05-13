@@ -1,0 +1,140 @@
+@import "assets/style/ee-style.scss";
+.header-info h4
+{
+    line-height: 15px;
+}
+
+
+section
+{
+    background-image: url(/assets/images/results-background.png);
+    .container
+    {
+        min-width: 80%;
+    }
+    #btn-back
+    {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 14pt;
+        padding: 10px;
+        text-decoration: none;
+    }
+    #topic-breakdown, #report-card
+    {
+        img
+        {
+            height: 100px;
+        }
+    }
+    #feedback
+    {
+        p
+        {
+            font-size: 16pt !important;
+        }
+        .practice
+        {
+            display: flex;
+            *{
+                align-self: center;
+            }
+            .point
+            {
+                width: 15px;
+                height: 15px;
+                margin: 5px;
+                border-radius: 50%;
+                background-color: $EE-Green-Color;
+            }
+        }
+    }
+    &#questions
+    {
+        background-color: #f6f6f6;
+        .mdc-layout-grid
+        {
+            margin-top: 0;
+            max-width: 1800px;
+        }
+        mdc-card{
+            box-shadow: 5px -2px 15px 2px rgba(0, 0, 0 , 0.3);
+            background-color: #fff;
+            padding: 10px 20px;
+
+            mdc-list{
+                background-color: #f2f2f2;
+                padding: 0;
+                #q_counter
+                {
+                    left: 0 !important;
+                }
+                mdc-list-item{
+                    padding: 0 10px;
+                    left: 0 !important;
+                }
+                perfect-scrollbar{
+                    height: 400px;
+                }
+            }
+            &.answer-description
+            {
+                text-align: center;
+                height: 100%;
+                min-height: 400px;
+                display: block;
+                position: relative;
+
+                span
+                {
+                    font-size : 30px;
+                }
+                b{
+                    font-size : 18px;
+                }
+                .card-bottom
+                {
+                    p
+                    {
+                        &:first-of-type{
+                            font-size: 14px;
+                        }
+                    }
+                    span
+                    {
+                        color: $EE-Blue-Color;
+                    }
+                }
+            }
+        }
+
+        button
+        {
+            color: #ffffff;
+        }
+    }
+}
+
+
+@media (max-width : 840px)
+{
+    #questions
+    {
+        .mdc-layout-grid
+        {
+            margin: 15px;
+        }
+    }
+}
+*{
+    font-family: "arconregular";
+    .fa {
+        display: inline-block;
+        font: normal normal normal 18px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}

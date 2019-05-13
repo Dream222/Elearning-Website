@@ -1,0 +1,18 @@
+
+<div class="mdc-layout-grid container">
+    <div class = "mdc-layout-grid__inner">
+        <div class = "mdc-layout-grid__cell mdc-layout-grid__cell--span-7-desktop">
+            <h1>Question1</h1>
+            <span></span>
+        </div>
+
+        <div class = "mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop">
+        </div>
+    </div>
+
+    <div id="test_area">
+        <textarea name="editor" id="editor" rows="30" cols="180" [(ngModel)] = "editorText"></textarea>
+        <p id="counter">TimeLeft : {{clockDisplay}}</p>
+    </div>
+    <button class="button-effect" (click)= "onFinish()">Finish</button>
+</div>

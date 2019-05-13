@@ -1,0 +1,64 @@
+@import "assets/style/ee-style.scss";
+
+*{
+    font-family: "arconregular";
+    .fa {
+        display: inline-block;
+        font: normal normal normal 18px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+.container
+{
+    max-width: 1400px;
+}
+
+section
+{
+    background-color: #dfeef4;
+    padding-bottom: 20px;
+    .attempt-table
+    {
+        padding: 0 8% 10px;
+        .table-row
+        {
+            text-align: center;
+            div
+            {
+                padding: 10px 0;
+                &:nth-of-type(2n)
+                {
+                    background-color: #ececec;
+                }
+            }
+            .eye
+            {
+                &:hover{
+                    color : $EE-Pink-Color;
+                }
+            }
+        }
+        .table-header
+        {
+            border-bottom: 2px solid rgba(0,0,0,0.3);
+            text-align: center;
+            div
+            {
+                padding: 10px 0;
+            }
+        }
+    }
+    .chat_area
+    {
+        width: 60%;
+    }
+    .fxClass-lt-md
+    {
+        width: 97%;
+        padding-right: 10px;
+    }
+}

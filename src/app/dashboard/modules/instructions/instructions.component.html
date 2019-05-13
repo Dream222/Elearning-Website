@@ -1,0 +1,33 @@
+<section class="header-info" *ngIf="areaTitle">
+    <div class="container">
+        <h4>{{ area_conf.title(areaTitle) }} - Instructions</h4>
+    </div>
+</section>
+
+<section id="instructions">
+    <div class="container">
+
+        <div class="mb-20" style="width: 50%;">
+            <h2>Instructions</h2>
+            <h5>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+                labore
+                et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                aliquip
+                ex ea commodo consequat.
+            </h5>
+        </div>
+
+        <div fxLayout fxLayoutGap='20px'>
+            <div *ngFor='let test of test_conf.tests' fxLayout='column' fxLayoutAlign='start stretch'>
+                <h1>{{test.title}}</h1>
+                <div class="mb-5">
+                    <span *ngIf='test.disable != areaTitle'>{{test.questions}} questions,</span>
+                    <span>{{test.time}} minutes</span>
+                </div>
+                <button class="button-effect m-0" (click)="startTest(test.type)">Start</button>
+            </div>
+        </div>
+    </div>
+</section>

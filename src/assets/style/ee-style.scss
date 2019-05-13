@@ -1,0 +1,66 @@
+@import "assets/font/Anson-Regular/web/stylesheet.css";
+@import "assets/font/Bankgothic-md-bt/style.css";
+@import "assets/font/Arcon/style.css";
+
+$EE-Green-Color : #00AC4E;
+$EE-Yellow-Color : #FFCF01;
+$EE-Pink-Color : #EE2A7B;
+$EE-Blue-Color : #5EC8F3;
+$EE-Light-Blue : rgb(230,241,247);
+
+.back-cl-light-blue{background-color: $EE-Light-Blue}
+.back-cl-green{background-color: $EE-Green-Color !important}
+.cl-green{color:$EE-Green-Color!important}
+.back-cl-yellow{background-color: $EE-Yellow-Color !important}
+.cl-yellow{color:$EE-Yellow-Color !important}
+.back-cl-pink{background-color: $EE-Pink-Color !important}
+.cl-pink{color:$EE-Pink-Color !important}
+.back-cl-blue{background-color: $EE-Blue-Color !important}
+.cl-blue{color:$EE-Blue-Color !important}
+.back-cl-primary{background-color: $EE-Blue-Color !important}
+.cl-primary{color: $EE-Blue-Color}
+.border-2-primary{border : 2px solid $EE-Blue-Color}
+.border-2-yellow{border : 2px solid $EE-Yellow-Color}
+
+.font-arconregular{font-family: 'arconregular'};
+.font-bankgothicmdbt{font-family: 'bankgothicmdbt'};
+
+.ee-sample
+{
+    background-color: #fff;
+    border: 2px solid #333333;
+    color: #000;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        border-bottom-right-radius: 5px;
+        border-left: 5px solid $EE-Pink-Color;
+        background-color: rgba(0,0,0,0.75);
+        box-shadow: 4px 4px 12px 0px rgba(0,0,0,0.5);
+        z-index: 999;
+        line-height: 15px;
+        -webkit-animation: opacity_show .4s ease-out;
+        span{
+            color: #fff;
+            padding: 5px 10px;
+            font-size: 10pt;
+            display: block;
+            cursor: pointer;
+            &:hover
+            {
+                color: $EE-Pink-Color;
+                font-weight : bold;
+            }
+        }
+    }
+    &:hover .dropdown-content
+    {
+        display: block;
+    }
+}

@@ -1,0 +1,90 @@
+<section>
+    <div class="back-cl-yellow">
+        <div class="container position-relative">
+            <h4 class="pt-20 pb-20 m-0 cl-white">Writing Result - Attempt {{attemptId}}</h4>
+            <a id="btn-back" class="ee-sample" [routerLink]="['/dashboard/stats/writing']">Back to Statistics</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="mb-20" fxLayout='column' fxLayoutGap='10px'>
+            <h4>Report Card</h4>
+            <div id="reportcard" fxLayout fxLayout.lt-sm='column' fxLayoutAlign='start stretch'>
+                <div fxFlex='50' class="ee-sample p-10" fxLayout fxLayoutAlign='center center' fxLayoutGap='10px'>
+                    <div>
+                        <img src="assets/images/writing/hourglass.png">
+                    </div>
+                    <div fxLayout = 'column' fxLayoutAlign='center center'>
+                        <span class="font-18">Time to Complete</span>
+                        <span class="font-25">{{util.convert_msec_to_string(ctl.time)}}</span>
+                    </div>
+                </div>
+                <div fxFlex fxFlex.lt-sm='false' class="ee-sample p-10" fxLayout fxLayoutAlign='center center' fxLayoutGap='10px'>
+                    <div>
+                        <img src="assets/images/writing/A.png">
+                    </div>
+                    <div fxLayout = 'column' fxLayoutAlign='center center'>
+                        <span class="font-18">Word Count</span>
+                        <span class="font-25">{{ctl.count_words}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb-20">
+            <div>
+                <h4>Analyse By</h4>
+            </div>
+            <div id="analyseby" fxLayout fxLayout.lt-sm='column'>
+                <div fxFlex fxFlex.lt-sm='false' fxLayout='column' fxLayoutAlign='start center' fxLayoutGap='10px'
+                    *ngFor='let item of writingConf.baseline_titles;let i=index'
+                    class="ee-sample p-10"
+                    id="tab{{i}}"
+                    [ngClass] = 'writingConf.baseline_style(item)'
+                    (click)= 'baseline_set(item)'>
+                        <img style="height: 30px" [src] = writingConf.image(item)>
+                        <span>{{item}}</span>
+                </div>
+            </div>
+        </div>
+        <div id='result_description'>
+            <div class="ee-sample p-30">
+                <div>
+                    <div class="opacity-animation result_text_header" *ngIf='writingConf.get_config(ctl.baseline, "subs", "sub_titles")' fxLayout fxLayoutAlign='start' fxLayoutGap='15px'>
+                        <div
+                            id="subtab{{i}}"
+                            class="baseline_sub"
+                            *ngFor='let item of writingConf.get_config(ctl.baseline, "subs", "sub_titles");let i=index;'
+                            [ngClass]='writingConf.sub_style(ctl.baseline, item)'
+                            (click)='baseline_set(ctl.baseline, item)'>
+                            
+                            {{item}}
+                        </div>
+                    </div>
+                    <div id="homophone_toggle"></div>
+                    <div class="opacity-animation homophone_toggle result_text_header" *ngIf='writingConf.get_config(ctl.baseline, "homophone_toggle")'>
+                        <mat-slide-toggle (click)='on_homonphone()'>
+                            {{util.el_json_dict(null, writingConf.get_config(ctl.baseline, 'homophone_toggle'))}}
+                        </mat-slide-toggle>
+                    </div>
+                </div>
+                <perfect-scrollbar style="width: 100%; height: 600px;">
+                    <div id="result_text" (click)="show_detail($event, detail)"></div>
+                </perfect-scrollbar>
+            </div>
+            <div #detail>
+                <el-detail-popup
+                    *ngIf="showPopup"
+                    [control] = 'ctl'
+                    (option) = 'category_select($event)'
+                    (play_embed) = 'embed($event, activity)'>
+                </el-detail-popup>
+            </div>
+        </div>
+        <div #activity *ngIf='embed_url'>
+            <div>
+                <h4>Activity</h4>
+            </div>
+            <iframe #embed class="activity_area" [src] = 'embed_url' scrolling="no" frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>

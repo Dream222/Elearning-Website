@@ -1,0 +1,2 @@
+<el-results *ngIf="areaTitle && areaTitle != 'writing'" [area] = 'areaTitle' [attemptId] = 'attemptId'></el-results>
+<el-writing *ngIf="areaTitle && areaTitle == 'writing'" [attemptId] = 'attemptId'></el-writing>

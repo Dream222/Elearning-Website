@@ -1,0 +1,83 @@
+<section id="contact-form" >
+
+    <p id="section_title">
+        Contact Us
+    </p>
+    <p>Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut </p>
+    <form>
+
+        <div id="btn_select">
+            <button [ngClass]="student_button_class" (click)="onClickStudent(1)">Student or Parent</button>
+            <button [ngClass]="school_button_class" (click)="onClickStudent(2)">SchoolAdministrator or Teacher</button>
+            <!-- <a href="" class="text-decoration-none"><i class="fa fa-envelope color-blue"></i>Lorem ipsum dolor sit amet</a>
+            <a href="" class="ml-15 text-decoration-none"><i class="fa fa-phone color-blue"></i>Lorem ipsum dolor sit amet</a> -->
+        </div>
+        <div *ngIf="school_button_class == 'btn_school_selected'">
+            <input
+                [(ngModel)]="contactForm.number"
+                label="Number"
+                type="number"
+                name="number"
+                required="true"
+                placeholder="Contact Number"
+            >
+            <input
+                [(ngModel)]="contactForm.schoolname"
+                label="SchoolName"
+                type="text"
+                name="schoolname"
+                required="true"
+                placeholder="School Name"
+            >
+            <input
+                [(ngModel)]="contactForm.position"
+                label="Position"
+                type="text"
+                name="position"
+                required="true"
+                placeholder="Position"
+            >
+        </div>
+        <div>
+            <input
+                [(ngModel)]="contactForm.name"
+                label="Name"
+                type="text"
+                name="name"
+                required="true"
+                placeholder="Name"
+            >
+        </div>
+
+        <div>
+            <input
+                [(ngModel)]="contactForm.email"
+                label="Email"
+                type="email"
+                name="email"
+                required="true"
+                placeholder="Email"
+            >
+        </div>
+
+        <div>
+            <textarea
+                [(ngModel)]="contactForm.message"
+                name="message"
+                label="Message"
+                rows="8"
+                cols="40"
+                required="true"
+                placeholder="Message">
+            </textarea>
+        </div>
+
+        <div>
+            <button class="button-effect"
+                    [disabled]="!contactForm.email || !contactForm.name || !contactForm.message" (click)="send()">Send
+            </button>
+        </div>
+
+    </form>
+
+</section>

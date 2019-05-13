@@ -1,0 +1,167 @@
+<section class="opacity-animation">
+
+    <!--************************* Detail Left side ************************************************-->
+    <div fxLayout fxLayout.lt-md='column' fxLayoutGap="2px" class="cl-white">
+        <div fxFlex='50' fxFlex.lt-md='false' class="detail-section position-relative">
+
+            <!--************************* Word Section ************************************************-->
+            <div *ngIf="section_exist('word')">
+                <div class="baseline-explanation">
+                    <div class="detail-section-title">{{ctl.match.message}}</div>
+                    <div class="pb-20">{{ctl.match.rulename_message}}</div>
+                </div>
+                <div>
+                    <p>{{ctl.match.description}}</p>
+                    <div *ngIf = "ctl.match.replacements.length && writingConf.get_config(ctl.baseline, 'replacement')" fxLayout="column" fxLayoutGap="5px" class="pb-20">
+                        <div *ngFor="let item of ctl.match.replacements | slice:0:10;" fxLayout fxLayoutAlign="start center" fxLayoutGap="10px">
+                            <span class="font-bold">{{item.value}}</span>
+                            <span
+                                *ngIf="ctl.match.category_id == 'HOMOPHONE'"
+                                [ngClass]="[ word_class(item.count, true), 'common_class']">
+                                {{word_class(item.count)}}
+                            </span>
+                            <a *ngIf='is_single_word(item.value)' class="definition" (click) = 'search(item.value)'>definition</a>
+                        </div>
+                    </div>
+                    <div *ngIf='ctl.match.id_example'>{{ctl.match.id_example}}</div>
+                </div>
+            </div>
+
+            <!--************************* Readability Section ************************************************-->
+            <div *ngIf="section_exist('readability')">
+                <div class="detail-section-title">{{ctl.sub}}</div>
+                <div>{{ctl.sentence.text}}</div>
+                <h4>What does the Highlighted Text Mean?</h4>
+                <div fxLayout fxLayoutAlign='start' fxLayoutGap='10px'>
+                    <div *ngFor='let i of writingConf.get_config(ctl.baseline, "target")' [ngStyle] = 'i.style' class="p-10 text-center">
+                        {{i.text}}
+                    </div>
+                </div>
+            </div>
+
+            <!--************************* Rhythm Section ************************************************-->
+            <div *ngIf="section_exist('rhythm')">
+                <div class="detail-section-title">{{ctl.sub}}</div>
+            </div>
+
+            <!--************************* Structure Section ************************************************-->
+            <div *ngIf="section_exist('structure')">
+                <div class="detail-section-title">{{ctl.sub}}</div>
+                <h5>Writing Statistics</h5>
+                <div *ngFor='let item of writingConf.get_config(ctl.baseline, "subs", ctl.sub, "structure")'>
+                    <p #v="var" [var]='util.el_json_dict(ctl.highlights, item)'>
+                        <span class="wc-subtitle">{{item.text}}</span>
+                        <span>{{v.var}}</span>
+                        <span>{{util.plural_form(v.var, item.tag)}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!--************************* Detail Right side ************************************************-->
+        <div fxFlex fxFlex.lt-md='false' fxLayout="column"  fxLayoutAlign="start stretch" fxLayoutGap='2px'>
+
+            <!--************************* Dictionary Section ************************************************-->
+            <div fxFlex class="detail-section" *ngIf="section_exist('dictionary')">
+                <div class="detail-section-title">Quick Dictionary</div>
+                <div class="search-field position-relative">
+                    <i class="fa fa-search"></i>
+                    <input type="text" placeholder="search" [(ngModel)]='word' (keyup) = "search()">
+                </div>
+                <div *ngIf='isGoodSearch()'>
+                    <h3>{{wordDictionary.word}}</h3>
+                    <p fxLayout fxLayoutAlign="start center">{{wordDictionary.category}}
+                        <mat-icon [matTooltip]="wordDictionary.category" matTooltipPosition='after'>help</mat-icon>
+                    </p>
+                    <strong>{{wordDictionary.definition}}</strong>
+                </div>
+            </div>
+
+            <!--************************ Sentence Breakdown Section *****************************************-->
+            <div fxFlex class="detail-section" *ngIf="section_exist('sentence_breakdown')">
+                <div class="detail-section-title">Sentence Breakdown</div>
+                <div class="cl-black" fxLayout='column' fxLayoutAlign='start stretch' fxLayoutGap='10px'>
+                    <div *ngFor='let i of writingConf.get_config(ctl.baseline, "subs", ctl.sub , "sentence_breakdown")' [ngStyle] = 'i.style' class="p-10" >
+                        {{i.text}}{{util.el_json_dict(ctl.highlights, i)}}
+                    </div>
+                </div>
+            </div>
+
+            <!--************************* Practice Section **************************************************-->
+            <div fxFlex class="detail-section"
+                *ngIf="check_practice()">
+                <div class="detail-section-title">{{capitalizeFirstLetter(ctl.match.category_id)}} - exercises and information</div>
+                <div *ngFor="let item of ctl.practices">
+                    <div class="practice" fxLayout fxLayoutAlign='start center' fxLayoutGap = '10px'>
+                        <div class="point"></div>
+                        <div class="font-18">{{item.resource_name}}</div>
+                        <button class="button-effect">
+                            <a *ngIf="item.url" [href]='item.url'>Go Practice!</a>
+                            <a *ngIf="item.embed" (click)='play_embed.emit(item.embed)'>Go Practice!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!--************************* Reading Level Section **************************************************-->
+            <div fxFlex class='detail-section' *ngIf="section_exist('reading_level')">
+                <div fxLayout='column' fxLayoutAlign='center center'>
+                    <div class='detail-section-title'>
+                        Estimated Reading Level For This Attempt
+                    </div>
+                    <h4 class="m-0 pb-20">
+                        <div *ngFor='let i of writingConf.get_config(ctl.baseline, "subs", ctl.sub , "reading_level")' [ngStyle] = 'i.style'>
+                            {{i.text}}{{util.el_json_dict(ctl.highlights, i)}}
+                        </div>
+                    </h4>
+                    <div class="mb-5">
+                        <el-select [source] = 'writingConf.get_config(ctl.baseline,"types")' [default] = 'ctl.type' (option)='option.emit($event)'></el-select>
+                    </div>
+                    <div>
+                        <el-select [source] = 'writingConf.get_config(ctl.baseline,"subs", ctl.sub, "ages")' [default] = '9'></el-select>
+                    </div>
+                </div>
+            </div>
+
+            <!--************************* Writing Analysis Section **************************************************-->
+            <div fxFlex class="detail-section" *ngIf="section_exist('writing_analysis')">
+                <div class='detail-section-title'>Writing Analysis</div>
+                <div *ngIf='tones.length'>
+                    <span class="wc-subtitle">Tone of writing</span>
+                    <p>This is the major tone we detected in your writing</p>
+                    <div fxLayout fxLayoutAlign="space-around center" fxLayoutGap='10px'>
+                        <div class="text-center">
+                            <img [matTooltip]="util.percent(tones[0].score, 1) + '%'" matTooltipPosition='below' [src]='getImageUrl(tones[0].tone_id)'>
+                        </div>
+                        <div>
+                            description sentence - this is a static template sentence
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="wc-subtitle">Sentiment of writing</p>
+                    <mat-spinner *ngIf='!chart'></mat-spinner>
+                    <div *ngIf='chart' fxLayout fxLayoutAlign='center center'>
+                        <div fxFlex='35'>
+                            <canvas
+                                width="1"
+                                height="1"
+                                baseChart
+                                [datasets] = 'chart.datasets'
+                                [options] = 'chart.options'
+                                [labels] = 'chart.labels'
+                                [chartType] = 'chart.type'
+                                [colors] = 'chart.colors'
+                                >
+                            </canvas>
+                        </div>
+                        <div fxFlex class="clarity_rule">
+                            {{util.el_json_dict(ctl.sentiments, writingConf.get_config(ctl.baseline, 'writing_analysis', 'sentiments_description'))}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,24 @@
+<section>
+    <mat-dialog-content class="pb-20">
+        <input type="text" placeholder="SchoolName:" [(ngModel)] = name>
+        <input type="text" placeholder="SchoolAdmin:" [(ngModel)] = school_admin>
+        <input type="email" placeholder="Contact Email:" [(ngModel)] = email>
+        <div class="position-relative">
+            <input type="text" placeholder="Licence Count">
+            <a class="licence-count"><i class="fa fa-chevron-down"></i></a>
+        </div>
+        <div fxLayout>
+            <div fxFlex="50" fxLayout="column" class="align-self-center text-center">
+                <span>Teachers:</span>
+                <button class="button-effect font-bold back-cl-white cl-black">CSV<i class="fa fa-share share"></i></button>
+            </div>
+            <div fxFlex="50" fxLayout="column" class="align-self-center text-center">
+                <span>Students:</span>
+                <button class="button-effect font-bold back-cl-white cl-black">CSV<i class="fa fa-share share"></i></button>
+            </div>
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions class="d-flex justify-content-center">
+        <button class="button-effect font-bold" (click)="onSave()">Save</button>
+    </mat-dialog-actions>
+</section>

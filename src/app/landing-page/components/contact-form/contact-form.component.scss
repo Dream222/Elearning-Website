@@ -1,0 +1,106 @@
+@import "assets/style/ee-style.scss";
+
+#contact-form
+{
+    color: #000;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    text-align: center;
+    background: url(/assets/images/landing-center-bg.png) no-repeat center center;
+    background-size: cover;
+    background-color: rgb(40, 167, 224);
+    #section_title
+    {
+        font-size: 2.1rem;
+        font-weight: bold;
+        margin: 25px 0;
+    }
+    i
+    {
+        color: $EE-Blue-Color;
+        margin-right: 10px;
+    }
+
+    .mdc-layout-grid
+    {
+        max-width: 720px;
+    }
+
+    form
+    {
+        max-width: 600px;
+        margin: auto;
+        padding:0 40px;
+        background-color: rgba(255,255,255,0.0);
+        mdc-text-field,   mdc-textarea{
+            background-color: #ffffff;
+            width: 100%;
+
+            // .mdc-textarea__
+
+        }
+        input, textarea
+        {
+            border: none !important;
+            background-color: #fff;
+            width: 95%;
+            margin: 20px 0;
+            padding: 7px 10px;
+            resize: vertical;
+        }
+
+        h2
+        {
+            color: #000;
+            margin: 0;
+        }
+        // #btn_select a
+        // {
+        //     color: #000;
+        //     &:hover
+        //     {
+        //         color: $EE-Blue-Color;
+        //     }
+        // }
+        #btn_select
+        {
+            display: flex;
+            button
+            {
+                width: 50%;
+                color: #fff;
+                border: none;
+                font-size: 13pt;
+                height: 35px;
+                border-radius: 25px;
+                &.btn_student_selected
+                {
+                    background-color: $EE-Blue-Color;
+                }
+                &.btn_school_selected
+                {
+                    background-color: $EE-Pink-Color;
+                }
+                &.btn_not_selected
+                {
+                    background-color: grey;
+                }
+                &:focus
+                {
+                    outline: none;
+                }
+            }
+        }
+    }
+}
+*{
+    font-family: "arconregular";
+    .fa {
+        display: inline-block;
+        font: normal normal normal 18px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}

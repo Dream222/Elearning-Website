@@ -1,0 +1,40 @@
+<section>
+    <div class="back-cl-pink">
+        <div class="top container d-flex justify-content-space-between">
+            <div class="cl-white">
+                <h1>Schools</h1>
+            </div>
+            <div class="search-field position-relative">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="search">
+            </div>
+            <div class="vertical-middle">
+                <button class="button-effect font-bold back-cl-white cl-black p-10" (click)="addSchool()">Add School+</button>
+            </div>
+        </div>
+    </div>
+    <div class="table" fxLayout="column" [ngClass.md]="{'responsive-md' : true}" [ngClass.sm]="{'responsive-sm' : true}" [ngClass.xs]="{'responsive-xs' : true}">
+        <div class="shadow-bar">
+            <div fxLayout class="table-header container">
+                <div fxFlex="13">School Name</div>
+                <div fxFlex="13">School Admin</div>
+                <div fxFlex="13">Contack Email</div>
+                <div fxFlex="13">Licence Count</div>
+                <div fxFlex="20">Manage Teachers/Classes</div>
+                <div fxFlex="15">Manage Students</div>
+                <div fxFlex="13">Suspend</div>
+            </div>
+        </div>
+        <div class="table-content">
+            <div *ngFor="let school of schools" fxLayout class="table-content-row container">
+                <div fxFlex="13">{{school.name}}</div>
+                <div fxFlex="13">{{school.school_admin}}</div>
+                <div fxFlex="13">{{school.email}}</div>
+                <div fxFlex="13">60/unlimited</div>
+                <div fxFlex="20"><a href="#">Home<i class="fa fa-search"></i></a></div>
+                <div fxFlex="15"><a [routerLink]="['/dashboard/admin-panel/students', school.school_admin, school.name]">Manage<i class="fa fa-search"></i></a></div>
+                <div fxFlex="13"><a href="#">Suspend<i class="fa fa-ban"></i></a></div>
+            </div>
+        </div>
+    </div>
+</section>

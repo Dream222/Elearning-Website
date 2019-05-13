@@ -1,0 +1,32 @@
+@import "assets/style/ee-style.scss";
+section
+{
+    min-height : 300px;
+    .comment_area
+    {
+        background-color : #ececec;
+        height : 260px;
+    }
+    .comment_send
+    {
+        width : 95%;
+        position: relative;
+        .comment
+        {
+            height : 28px;
+            border-radius : 15px;
+            padding-left : 15px;
+            width : 98%;
+            &:focus
+            {
+                outline : none;
+            }
+        }
+        .send
+        {
+            position : absolute;
+            right : 0;
+            bottom : -2px;
+        }
+    }
+}

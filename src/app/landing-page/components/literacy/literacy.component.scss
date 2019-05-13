@@ -1,0 +1,51 @@
+@import "assets/style/ee-style.scss";
+section
+{
+    background: url(/assets/images/landing-center-bg.png) no-repeat;
+    background-size: cover;
+
+    .mdc-layout-grid
+    {
+        .mdc-layout-grid__inner
+        {
+            .mdc-layout-grid__cell
+            {
+                &.gifContainer
+                {
+                    width: 100%;
+                    border: 2px solid grey;
+                    background-color: grey;
+                }
+                mdc-card
+                {
+                    p
+                    {
+                            text-align: left;
+                    }
+                    .btn_test
+                    {
+                        background-color: $EE-Yellow-Color;
+                        font-size: 15px;
+                        font-weight: bold;
+                    }
+                    mdc-card-supporting-text
+                    {
+                        flex: auto;
+                    }
+                }
+                .btn_see_reporting
+                {
+                    background-color: $EE-Green-Color;
+                    font-size: 15px;
+                    font-weight: bold;
+                    width: 100%;
+                    margin:10px auto 0;
+                }
+            }
+        }
+    }
+}
+
+*{
+    font-family: 'arconregular' !important;
+}

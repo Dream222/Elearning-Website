@@ -1,0 +1,45 @@
+<footer [mdc-elevation]="12">
+    <section id="text" class="container">
+        <div fxLayout fxLayoutAlign="space-between">
+            <div fxFlex="30">
+                <h4>About</h4>
+                <p>
+                    Our system involves a complex, machine learning algorithm which assesses the student against the
+                    OLNA
+                    marking guide to predict their grade. Our predictions have been estimated using a database of
+                    questions and responses from OLNA experienced teachers, and real students. Over time, our
+                    algorithm
+                    will get increasingly more accurate so that students will be ready to tackle the OLNA with
+                    confidence.
+                </p>
+            </div>
+            <div>
+                <h4>Social</h4>
+                <i class="fa fa-2x fa-linkedin-square" aria-hidden="true"></i>
+                <i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i>
+                <i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i>
+            </div>
+            <div>
+                <h4>Account</h4>
+                <ul>
+                    <li>
+                        <a>Log in</a>
+                    </li>
+                    <li>
+                        <a>Sign up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="copyright">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12">
+                    <p>Copyright {{ date }} | All rights reserved | Privacy Policy | Terms of Use</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</footer>

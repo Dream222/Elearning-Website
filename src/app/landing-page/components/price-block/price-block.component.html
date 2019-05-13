@@ -1,0 +1,73 @@
+<section id="price-blocks" [mdc-elevation]="5">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+
+            <div *ngFor='let area of area_conf.areas'
+                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+                <mdc-card class="area-block" [mdc-theme-dark]="false" [mdc-surface]="true" mdc-ripple
+                          (click)="changePriceDescription()">
+                    <mdc-card-primary>
+                        <mdc-card-title [large]="true">
+                            <h2>{{area_conf.title(area)}}</h2>
+                        </mdc-card-title>
+
+                    </mdc-card-primary>
+                    <mdc-card-supporting-text>
+                        $10/month
+                        <br>
+                        Cancel Anytime!
+                    </mdc-card-supporting-text>
+                    <mdc-card-actions>
+                        <button class="btn_test button-effect" (click)="startTest(area)">Start Example Test
+                        </button>
+                        <button class="button-effect">Buy now</button>
+                    </mdc-card-actions>
+                </mdc-card>
+            </div>
+
+            <div
+                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet">
+                <mdc-card class="area-block" [mdc-theme-dark]="false" [mdc-surface]="true" mdc-ripple
+                          (click)="changePriceDescription()">
+                    <mdc-card-primary>
+                        <mdc-card-title [large]="true"><h2>Access All</h2></mdc-card-title>
+                    </mdc-card-primary>
+                    <mdc-card-supporting-text>
+                        $15/month
+                        <br>
+                        <span style="display: block; visibility: hidden">Buy</span>
+                    </mdc-card-supporting-text>
+                    <mdc-card-actions>
+                        <button class="button-effect">Buy now</button>
+                    </mdc-card-actions>
+                </mdc-card>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="price-description" class="container">
+
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div
+                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-phone mdc-layout-grid__cell--span-4-tablet image">
+                <img class="img-fluid" src="assets/images/price-description.jpg">
+            </div>
+
+            <div
+                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-phone mdc-layout-grid__cell--span-4-tablet description">
+                <h3 class="font-bold">Access All - $15/month</h3>
+                <ul>
+                    <li><i><img src="assets/icons/parent-login.png"></i>Parent Login</li>
+                    <li><i><img src="assets/icons/progress-tracker.png"></i>Progress Tracker</li>
+                    <li><i><img src="assets/icons/tailored-feedback.png"></i>Tailored Feedback</li>
+                    <li><i><img src="assets/icons/access-to-all-question-sets.png"></i>Access to All Question Sets</li>
+                </ul>
+                <button class="button-effect">Buy now</button>
+            </div>
+        </div>
+    </div>
+
+</section>

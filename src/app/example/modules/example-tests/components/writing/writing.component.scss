@@ -1,0 +1,37 @@
+@import "assets/style/ee-style.scss";
+.mdc-layout-grid
+{
+    .mdc-layout-grid__inner
+    {
+        grid-gap: 0;
+        .mdc-layout-grid__cell
+        {
+            display: block;
+            &:last-of-type
+            {
+                height: 250px;
+                background-color: grey;
+            }
+        }
+    }
+    #test_area
+    {
+        position: relative;
+        margin: 30px 0 10px;
+        #counter
+        {
+            position: absolute;
+            bottom: -9px;
+            color: $EE-Pink-Color;
+            right: 42%;
+            font-weight: bold;
+            pointer-events: none;
+        }
+    }
+    button
+    {
+        min-width: 300px;
+        display: block;
+        margin: 0 auto !important;
+    }
+}

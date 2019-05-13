@@ -1,0 +1,5 @@
+<select (change)="onSelect($event.target.value)" [(ngModel)]='sel_option'>
+  <option *ngFor="let item of source" value= {{item.value}}>
+     {{item.text}}
+  </option>
+</select>

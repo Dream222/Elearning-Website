@@ -1,0 +1,10 @@
+<section class="header-info" *ngIf="areaTitle">
+    <div class="container">
+        <h4>Example Test - {{ areaTitle }}</h4>
+        <mdc-icon fontSet="fa" fontIcon="fa-clock-o"></mdc-icon>
+        <h4>time</h4>
+    </div>
+</section>
+
+<el-choose-answer *ngIf="areaTitle && areaTitle != 'writing'"></el-choose-answer>
+<el-writing *ngIf="areaTitle && areaTitle == 'writing'">Loading.....</el-writing>

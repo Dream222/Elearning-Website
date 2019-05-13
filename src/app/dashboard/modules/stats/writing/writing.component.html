@@ -1,0 +1,29 @@
+<section *ngIf="attempts">
+    <div class="container opacity-animation">
+        <div class="text-left">
+            <h4 class="pt-20 pb-20 m-0 description">Attempt Summary</h4>
+        </div>
+        <div class="attempt-table ee-sample">
+            <div class="table-header" fxLayout fxLayoutAlign="center center">
+                <div fxFlex="15">Attempt#</div>
+                <div fxFlex="25">Date of Attempt</div>
+                <div fxFlex="20">Word count</div>
+                <div fxFlex="30">Time to Complete</div>
+                <div fxFlex="10">View</div>
+            </div>
+            <div class="table-row" *ngFor="let item of attempts; let i=index" fxLayout fxLayoutAlign="center center">
+                <div fxFlex="15">{{i + 1}}</div>
+                <div fxFlex="25">{{item.date | date}}</div>
+                <div fxFlex="20">{{item.count_words}}</div>
+                <div fxFlex="30">{{time_to_complete(item.time)}}</div>
+                <div fxFlex="10" class="eye" (click)="viewResults(item.id)">
+                    <a class = "transparent-background"><i class="fa fa-eye"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="text-left">
+            <h4 class="pt-20 pb-20 m-0 description">Activities</h4>
+        </div> -->
+    </div>
+</section>
+<el-spinner [show]='loading' [color]='area_conf.get_config("writing", "color")'></el-spinner>

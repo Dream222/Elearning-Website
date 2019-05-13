@@ -1,0 +1,92 @@
+
+@import "assets/style/ee-style.scss";
+
+.container
+{
+    max-width: 1500px
+}
+div
+{
+    min-width: 100px;
+}
+.top
+{
+    height: 75px;
+    div
+    {
+        align-self: center;
+    }
+    .share
+    {
+        transform: rotateZ(180deg);
+        font-size: 17px;
+        padding-right: 10px;
+    }
+    .search-field
+    {
+        i
+        {
+            position: absolute;
+            top: 9px;
+            left: 5px;
+            font-size: 14px;
+            color: rgb(205,221,228);
+        }
+        input
+        {
+            padding-left: 25px;
+            border-radius: 4px;
+            border: none;
+            height: 30px;
+        }
+    }
+}
+.table
+{
+    margin-bottom: 20px;
+    a
+    {
+        color: $EE-Blue-Color;
+        i
+        {
+            padding-left: 5px;
+            font-size: 14px;
+        }
+    }
+    .table-header
+    {
+        div
+        {
+            margin: 15px 0;
+            padding: 0 10px;
+            align-self: center;
+            text-align: center;
+            border-right: 1px solid #ececec;
+            &:last-of-type
+            {
+                border-right: none;
+            }
+        }
+    }
+    .table-content-row
+    {
+        div
+        {
+            padding: 15px 10px;
+            align-self: center;
+            text-align: center;
+            &:nth-of-type(2n)
+            {
+                background-color: #ececec;
+            }
+            &:first-of-type(2n + 1)
+            {
+                padding-left: 0;
+            }
+            &:last-of-type(2n + 1)
+            {
+                padding-right: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.header-info
+{
+    h4
+    {
+        margin: 0;
+        padding: 10px 0;
+        font-size: 16pt;
+    }
+}
+#instructions
+{
+    padding-top: 12%;
+    padding-bottom: 12%;
+    background: url(/assets/images/test-instructions-bg.jpg) no-repeat;
+    background-size: cover;
+    background-color: rgba(40, 167, 224, .5);
+    h2
+    {
+        font-weight: bold;
+        margin: 0;
+    }
+
+}
+button
+{
+    box-shadow: none;
+}

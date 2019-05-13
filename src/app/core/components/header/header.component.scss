@@ -1,0 +1,56 @@
+@import "assets/style/ee-style.scss";
+
+mdc-toolbar
+{
+    z-index: 2;
+    background-color: #fff;
+    color:#000000;
+    border-bottom: 5px solid $EE-Pink-Color;
+    .go-homes
+    {
+        color: #000000;
+        cursor: pointer;
+    }
+
+    mdc-toolbar-row
+    {
+        padding: 0 20px;
+
+        a
+        {
+            color: #000000;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+
+            &:hover, &:focus, &:active
+            {
+                color: $EE-Blue-Color;
+            }
+        }
+
+        mdc-toolbar-section
+        {
+            text-align: center;
+            .toolbar-end
+            {
+                button
+                {
+                    margin: 0;
+                    font-weight: bold;
+                }
+            }
+            form
+            {
+                padding: 0px 15px;
+                mdc-text-field
+                {
+                    margin-right: 15px;
+                    margin-top: 0;
+                    width: 150px;
+                }
+            }
+        }
+    }
+}

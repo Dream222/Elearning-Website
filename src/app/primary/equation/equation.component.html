@@ -1,0 +1,6 @@
+<div class="equation">
+    <span class="line-height-25" *ngFor="let item of fraction">
+        <ng-katex *ngIf="item.equation" [equation]="item.text" [options]="options"></ng-katex>
+        <span *ngIf="!item.equation" [innerHTML]='item.text'></span>
+    </span>
+</div>

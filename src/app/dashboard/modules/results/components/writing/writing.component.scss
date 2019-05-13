@@ -1,0 +1,73 @@
+@import "assets/style/ee-style.scss";
+
+*{
+    font-family: "arconregular"
+}
+
+section
+{
+    background: url(/assets/images/contact-form-bg.jpg) no-repeat;
+    background-size: cover;
+    padding-bottom: 20px;
+    .container
+    {
+        max-width: 1200px;
+    }
+    #btn-back
+    {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 14pt;
+        padding: 10px;
+        text-decoration: none;
+    }
+    #result_description
+    {
+        .ee-sample
+        {
+            cursor: default;
+        }
+        .baseline_sub
+        {
+            padding: 5px 10px;
+            font-size: 14pt;
+            cursor: pointer;
+        }
+        .result_text_header
+        {
+            padding: 10px;
+            background-color: #ececec;
+            border-bottom: 1px solid #ddd;
+        }
+        .homophone_toggle
+        {
+            font-size: 14pt;
+            color: $EE-Pink-Color;
+            padding: 15px 0 15px 10px;
+        }
+        #result_text
+        {
+            font-size: 18pt;
+            color: black;
+            margin-top: 10px;
+            line-height: 50px;
+            width: 97%;
+        }
+    }
+    #activity
+    {
+        display: none;
+    }
+    p
+    {
+        font-weight: bold;
+    }
+
+    .activity_area
+    {
+        height: 800px;
+        width: 100%;
+        background-color: #fff;
+    }
+}

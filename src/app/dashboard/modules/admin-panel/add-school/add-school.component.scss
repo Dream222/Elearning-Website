@@ -1,0 +1,39 @@
+section
+{
+    width: 300px;
+    .mat-dialog-content
+    {
+        input
+        {
+            display: block;
+            width: 100%;
+            padding: 0 5px;
+            border: none;
+            height: 30px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            &:focus
+            {
+                outline: none;
+            }
+        }
+    }
+
+    .licence-count
+    {
+        position: absolute;
+        right: 0px;
+        top: 8px;
+        transition: transform 0.8s;
+        cursor: pointer;
+        &:active{
+            transform: rotateZ(180deg);
+        }
+    }
+    .share
+    {
+        transform: rotateZ(180deg);
+        font-size: 17px;
+        padding-right: 10px;
+    }
+}

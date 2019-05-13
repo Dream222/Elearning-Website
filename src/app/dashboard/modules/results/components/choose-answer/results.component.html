@@ -1,0 +1,163 @@
+<section *ngIf="result.area_title">
+    <div [ngClass]="area_conf.background(result.area_title)" class="p-20 position-relative">
+        <h4  class="cl-white m-0">{{area_conf.title(result.area_title)}} Result - Attempt {{attemptId}}</h4>
+        <a id="btn-back" class="ee-sample" [routerLink]="['/dashboard/stats', result.area_title]">Back to Statistics</a>
+    </div>
+    <div class="container" fxLayout='column' fxLayoutGap='20px'>
+        <div class="text-left">
+            <h4 class="pt-20 m-0 description">Report Card</h4>
+        </div>
+        <div id="report-card" class="font-18" fxLayout fxLayout.lt-md='column'>
+            <div fxFlex fxFlex.lt-md='false' class="p-30 ee-sample" fxLayout fxLayoutGap='20px' fxLayoutAlign='center center'>
+                <div>
+                    <img src="assets/images/stats/time.png">
+                </div>
+                <div class="text-center" fxLayout='column' fxLayoutGap='15px' fxLayoutAlign='center'>
+                    <span>Time to Complete</span>
+                    <span>{{ result.completion_time }}</span>
+                </div>
+            </div>
+            <div fxFlex fxFlex.lt-md='false' class="p-30 ee-sample" fxLayout fxLayoutGap='20px' fxLayoutAlign='center center'>
+                <div>
+                    <img src="assets/images/stats/score.png">
+                </div>
+                <div class="text-center" fxLayout='column' fxLayoutGap='15px' fxLayoutAlign='center'>
+                    <span>Score This Time</span>
+                    <span>{{util.percent(result.score, result.questions.length)}}%</span>
+                </div>
+            </div>
+            <div fxFlex fxFlex.lt-md='false' class="p-30 ee-sample" fxLayout fxLayoutGap='20px' fxLayoutAlign='center center'>
+                <div>
+                    <img src="assets/images/stats/award.png">
+                </div>
+                <div class="text-center" fxLayout='column' fxLayoutGap='15px' fxLayoutAlign='center'>
+                    <span>Your Best Attempt</span>
+                    <span>{{util.percent(result.best_score, result.questions.length)}}%</span>
+                </div>
+            </div>
+        </div>
+        <div class="text-left">
+            <h4 class="pt-20 pb-20 m-0 description">Topic Breakdown</h4>
+        </div>
+        <div id="topic-breakdown" class="font-18" fxLayout fxLayout.lt-md='column'>
+            <div fxFlex fxFlex.lt-md='false'
+                fxLayout='column' fxLayoutAlign='space-between center' fxLayoutGap='20px'
+                *ngFor="let i of topic_conf.ids(result.area_title)" class="p-30 ee-sample">
+
+                <div fxLayout fxLayoutGap='20px' fxLayoutAlign='center center' class="font-15">
+                    <div>
+                        <img class="vertical-middle" [src] = "topic_conf.img(i)">
+                    </div>
+                    <div class="text-center" fxLayout='column' fxLayoutGap='15px' fxLayoutAlign='center'>
+                        <span>Your average for {{topic_conf.title(i)}}</span>
+						<span class="font-bold">{{topic_average_percent(i)}}%</span>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="p-10 font-bold">Score This Time:</div>
+                    <div>
+                        <span class="font-25">{{util.percent(topic_conf.get_score(i),15)}}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-left">
+            <h4 class="m-0 description">Feedback</h4>
+        </div>
+        <div id="feedback" class="ee-sample p-20 text-left">
+            <p>Based on your results - we found a few areas you can practice in. We have some general feedback, or some links to other resources where you can learn.</p>
+            <p>Once you have had a bit more practice - come back and try beat your score!</p>
+            <div *ngFor="let item of practices">
+                <div *ngIf="topic_conf.contains(result.area_title, item.topic_id)" class="practice">
+                    <div class="point"></div>
+                    <div class="font-18 pr-20">{{item.resource_name}}</div>
+                    <button class="button-effect"><a [href]="item.url">Go Practice!</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="questions" *ngIf="result && currentQuestion">
+    <div class="mdc-layout-grid pb-20">
+        <div class="mdc-layout-grid__inner">
+            <mdc-card
+                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile"
+                [mdc-theme-dark]="false">
+
+                <mdc-card-supporting-text>
+                    <div class="mdc-layout-grid__inner">
+                        <mdc-list
+                            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-mobile questions-list"
+                            [mdc-theme-dark]="false"
+                            [border]="false">
+                            <div>
+                                <mdc-list-item id="q_counter" class="cl-white back-cl-blue">
+                                    {{ getCurrentQuestionIndex() + '/' + result.questions.length }}
+                                </mdc-list-item>
+                            </div>
+                            <perfect-scrollbar>
+                                <mdc-list-item *ngFor="let question of result.questions; let i = index;"
+                                               [class.active]="question.id == currentQuestion.id"
+                                               (click)="changeQuestion(question)">
+                                    Question {{ i + 1 }}
+                                    <mdc-icon mdc-list-item-end fontSet="fa" fontIcon="fa-check"
+                                              *ngIf="question.was_answered_correctly"></mdc-icon>
+                                </mdc-list-item>
+                            </perfect-scrollbar>
+                        </mdc-list>
+
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile pl-30">
+                            <h4>Question {{ getCurrentQuestionIndex() }}</h4>
+                            <el-equation [equation]="currentQuestion.text"></el-equation>
+                            <div class="answers-list">
+                                <mdc-form-field *ngFor="let answer of currentQuestion.answers">
+                                    <mdc-radio id="anwer-{{ answer.id }}"
+                                               [disabled]="true"
+                                               [checked]="answer.is_user_answer"
+                                               name="answers"></mdc-radio>
+                                    <label for="anwer-{{ answer.id }}-input">
+                                        <el-equation [equation]="answer.text"></el-equation>
+                                    </label>
+                                </mdc-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </mdc-card-supporting-text>
+            </mdc-card>
+
+            <div  class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-mobile">
+                <mdc-card class="answer-description" [mdc-theme-dark]="false" fxLayout='column' fxLayoutAlign='space-between center'>
+                    <div>
+                        <mdc-card-supporting-text>
+                            <div *ngIf="currentQuestion.was_answered_correctly" class="text-center">
+                                <img src = "assets/images/answer-correct.png" width="150px">
+                            </div>
+
+                            <div *ngIf="!currentQuestion.was_answered_correctly">
+                                <span class="d-block">Correct Answer: {{getCorrectAnswerIndexForCurrentQuestion()}}</span>
+                                <b class="d-block pt-20"><el-equation [equation] = getCorrectAnswerForCurrentQuestion().text></el-equation></b>
+                            </div>
+
+                            <el-equation [equation] = getCorrectAnswerForCurrentQuestion().description></el-equation>
+
+                            <h3 class="cl-primary">
+                                You answered
+                                {{ currentQuestion.was_answered_correctly ? 'Correctly' : 'Incorrectly' }}
+                            </h3>
+                        </mdc-card-supporting-text>
+                    </div>
+                    <div class="card-bottom">
+                        <p>If you need more help - visit our resources section</p>
+                        <span>-------------</span>
+                        <p>
+                            <b *ngFor="let category of currentQuestion.categories; let i = index;">
+                                Topics: {{ category.title }}{{ currentQuestion.categories.length - 1 == i ? '' : ', ' }}
+                            </b>
+                        </p>
+                    </div>
+                </mdc-card>
+            </div>
+        </div>
+    </div>
+
+</section>

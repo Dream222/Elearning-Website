@@ -1,0 +1,29 @@
+@import "assets/style/ee-style.scss";
+section
+{
+    padding: 20px 0;
+    // .question
+    // {
+    //     min-height: 300px;
+    // }
+    .test_area
+    {
+        position: relative;
+        margin: 30px 0 10px;
+        #counter
+        {
+            position: absolute;
+            bottom: -9px;
+            color: $EE-Pink-Color;
+            right: 42%;
+            font-weight: bold;
+            pointer-events: none;
+        }
+    }
+    .button-effect
+    {
+        min-width: 300px;
+        display: block;
+        margin: 0 auto !important;
+    }
+}

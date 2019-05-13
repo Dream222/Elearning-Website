@@ -1,0 +1,156 @@
+<section *ngIf="attempts">
+    <div class="container opacity-animation">
+        <div class="mdc-layout-grid">
+            <div class="text-left">
+                <h4 class="pt-20 pb-20 m-0 description">Report Card</h4>
+            </div>
+            <div id="report-card" class="mdc-layout-grid__inner">
+                <div class="d-flex justify-content-center p-30 ee-sample mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-phone">
+                    <div class="pr-20 align-self-left">
+                        <img src="assets/images/stats/award.png">
+                    </div>
+                    <div class="align-self-center">
+                        <span class="d-block">{{get_score('max')}}%</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center p-30 ee-sample mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-phone">
+                    <div class="pr-20 align-self-center">
+                        <img src="assets/images/stats/lastattempt.png">
+                    </div>
+                    <div class="align-self-center">
+                        <span class="d-block">{{get_score('last')}}%</span>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center p-30 ee-sample mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-phone">
+                    <div class="pr-20 align-self-left">
+                        <img src="assets/images/stats/stats.png">
+                    </div>
+                    <div class="align-self-center">
+                        <span class="d-block">{{get_score('average')}}%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="text-left">
+                <h4 class="pt-20 pb-20 m-0 description">Topic Breakdown</h4>
+            </div>
+            <div *ngIf='averages' id="topic-breakdown" class="mdc-layout-grid__inner">
+                <div *ngFor="let i of topic_conf.ids(area)" class="p-30 ee-sample mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-8-phone">
+                    <div class="d-flex justify-content-center">
+                        <div class="pr-20">
+                            <img class="vertical-left" [src] = "topic_conf.img(i)">
+                        </div>
+                        <div class="align-self-center">
+                            <span class="d-block"><p><b>Average Score:</b></p></span>
+							 <span class="font-25">{{topic_average_percent(i)}}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf='practices.length'>
+            <div class="text-left">
+                <h4 class="pt-20 pb-20 m-0 description">Feedback</h4>
+            </div>
+            <div id="feedback" class="ee-sample p-20 text-left">
+                <p>Based on your results - we found a few areas you can practice in. Here are some other tools you can use to learn.</p>
+                <p>Once you have had a bit more practice - come back and try beat your score!</p>
+                <div class="practice" *ngFor="let item of practices">
+                    <div *ngIf="topic_conf.contains(area, item.topic_id)" class="practice">
+                        <div class="point"></div>
+                        <div class="font-18 pr-20">{{item.resource_name}}</div>
+                        <button class="button-effect">
+                            <a *ngIf='item.url' [href]="item.url">Go Practice!</a>
+                            <a *ngIf='item.embed' (click)='go_practice(item.embed)'></a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="text-left">
+                <h4 class="pt-20 pb-20 m-0 description">Statistics</h4>
+            </div>
+            <div class="ee-sample">
+                <div id="chart" class="container">
+                    <div *ngIf='chart_view' class="chart_filter" fxLayout='column' fxLayoutGap='10px'>
+                        <div *ngFor='let type of chart_view.types' fxLayout fxLayoutGap='5px' fxLayout.lt-sm='column' fxLayoutAlign='center center'>
+                            <span fxFlex='10'>{{chart_view[type].text}}:</span>
+                            <button mdc-button *ngFor="let label of chart_view.labels ; let i = index ;"
+                                [ngClass] = "[ chart_view[type].statu[i] ? 'clicked_btn_style' : 'unclicked_btn_style'  ]"
+                                (click)="chart_filter(type, i)">
+                                {{label}}
+                            </button>
+                        </div>
+                    </div>
+                    <canvas id="stats_chart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="text-left">
+                <h4 class="pt-20 pb-20 m-0 description">Attempt Summary</h4>
+            </div>
+            <div id = "table_content" class="ee-sample p-30">
+                <div class="mdc-layout-grid container"  *ngIf="attempts && attempts.length > 0">
+                    <div class="mdc-layout-grid__inner table_header">
+                        <div
+                            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-desktop">
+                            Attempt #
+                        </div>
+                        <div
+                            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-mobile mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-desktop">
+                            Date of Attempt
+                        </div>
+                        <div
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-2-desktop">
+                            Total Score
+                        </div>
+                        <div *ngFor="let i of topic_conf.ids(area)"
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-2-desktop">
+                            <img [matTooltip] = topic_conf.title(i) [src] = topic_conf.img(i)>
+                        </div>
+                        <div
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-desktop">
+                            Actions
+                        </div>
+                    </div>
+                    <div class="mdc-layout-grid__inner table_content" *ngFor="let attempt of attempts; let i = index;">
+                        <div
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-desktop">
+                            {{ i + 1 }}
+                        </div>
+                        <div
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-2-mobile mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-desktop">
+                            {{ attempt.start_date | date }}
+                        </div>
+                        <div
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-2-desktop">
+                            {{ util.percent( attempt.total_score , n_question) }}%
+                        </div>
+                        <div *ngFor="let topic of attempt.topics"
+                            class="mdc-layout-grid__cell  mdc-layout-grid__cell--span-1-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-2-desktop">
+                            {{ util.percent( topic.correctly , n_question/3) }}%
+                        </div>
+
+                        <div
+                            class="eye mdc-layout-grid__cell  mdc-layout-grid__cell--span-2-mobile mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-desktop" (click)="viewResults(attempt.id)">
+                            <a class = "transparent-background" ><i class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf='embed_url'>
+            <div class="text-left">
+                <h4 class="pt-20 pb-20 m-0 description">Activity</h4>
+            </div>
+            <iframe #embed class="activity_area" [src] = 'embed_url' scrolling="no" frameborder="0" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
+</section>
+<section *ngIf="!attempts && !loading" id="no_attempt" class="opacity-animation">
+    <span>You have no attempts for this area!</span>
+</section>
+<el-spinner [show]='loading' [color]='area_conf.get_config(area, "color")'></el-spinner>

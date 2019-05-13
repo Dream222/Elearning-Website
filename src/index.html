@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>eLearning</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="http://linkedin.github.io/hopscotch/css/hopscotch-0.2.6.min.css" rel="stylesheet">
+    <!-- inline spinner styles to be able to display spinner right away -->
+    <style type="text/css">
+        body, html
+        {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .loader
+        {
+            position: absolute;
+            z-index: 1111111;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+        }
+
+        .loader:before
+        {
+            content: '';
+            display: block;
+            padding-top: 100%;
+        }
+
+        .circular
+        {
+            animation: rotate 2s linear infinite;
+            height: 100%;
+            transform-origin: center center;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        .path
+        {
+            stroke-dasharray: 1, 200;
+            stroke-dashoffset: 0;
+            animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+            stroke-linecap: round;
+        }
+
+        @keyframes rotate
+        {
+            100%
+            {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash
+        {
+            0%
+            {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+            50%
+            {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -35px;
+            }
+            100%
+            {
+                stroke-dasharray: 89, 200;
+                stroke-dashoffset: -124px;
+            }
+        }
+
+        @keyframes color
+        {
+            100%,
+            0%
+            {
+                stroke: #d62d20;
+            }
+            40%
+            {
+                stroke: #0057e7;
+            }
+            66%
+            {
+                stroke: #008744;
+            }
+            80%,
+            90%
+            {
+                stroke: #ffa700;
+            }
+        }
+
+    </style>
+    <script src="assets/ckeditor/ckeditor.js"></script>
+    <script src="http://linkedin.github.io/hopscotch/js/hopscotch-0.2.6.min.js"></script>
+    <script src="http://linkedin.github.io/hopscotch/js/multipage-demo.js"></script>
+</head>
+<body>
+<el-olna-app>
+    <!-- loading layout replaced by app after startupp -->
+    <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+    </div>
+</el-olna-app>
+</body>
+</html>

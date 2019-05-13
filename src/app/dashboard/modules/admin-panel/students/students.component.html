@@ -1,0 +1,47 @@
+<section>
+    <div class="back-cl-blue">
+        <div class="top container d-flex justify-content-space-between">
+            <div class="cl-white">
+                <h1>CBC Fremantle - Students</h1>
+            </div>
+            <div class="search-field position-relative">
+                <i class="fa fa-search"></i>
+                <input type="text" placeholder="search">
+            </div>
+            <div>
+                <button class="button-effect font-bold" (click)="addStudent()">Add Student+</button>
+                <button class="button-effect font-bold">CSV<i class="fa fa-share share"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="table">
+        <div class="shadow-bar">
+            <div fxLayout class="table-header container">
+                <div fxFlex="9">Username</div>
+                <div fxFlex="14">Email</div>
+                <div fxFlex="9">Class</div>
+                <div fxFlex="14">Parent/Guardian Email</div>
+                <div fxFlex="8">Avg Literacy</div>
+                <div fxFlex="10">Avg Numeracy</div>
+                <div fxFlex="6">Writing</div>
+                <div fxFlex="10">Change Password</div>
+                <div fxFlex="10">Suspend</div>
+                <div fxFlex="10">Results</div>
+            </div>
+        </div>
+        <div class="table-content">
+            <div *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" fxLayout class="table-content-row container">
+                <div fxFlex="9">jjones</div>
+                <div fxFlex="14">jjones@gmail.com</div>
+                <div fxFlex="9">Grade 10a</div>
+                <div fxFlex="14">parent639@gmail.com</div>
+                <div fxFlex="8">60%</div>
+                <div fxFlex="10">48%</div>
+                <div fxFlex="6">5</div>
+                <div fxFlex="10"><a href="">Password<i class="fa fa-pencil"></i></a></div>
+                <div fxFlex="10"><a href="">Suspend<i class="fa fa-ban"></i></a></div>
+                <div fxFlex="10"><a href="">Results<i class="fa fa-search"></i></a></div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,66 @@
+@import "assets/style/ee-style.scss";
+.common_class{
+    border-radius: 7px;
+    padding: 1px 3px;
+    background-color: #fff;
+}
+
+.definition{
+    border-radius: 7px;
+    padding: 1px 3px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #333;
+    cursor: pointer;
+    &:hover, &:focus
+    {
+        color: #fff;
+        background-color: $EE-Green-Color;
+    }
+}
+
+.baseline-explanation{
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+
+.detail-section
+{
+    background-color: #333;
+    padding: 30px;
+    .detail-section-title
+    {
+        font-weight: bold;
+        font-size: 18pt;
+        padding-bottom: 20px;
+    }
+    .wc-subtitle
+    {
+        color : rgb(149,153,246);
+    }
+    .clarity_rule
+    {
+        background-color: #ececec;
+        border-radius: 9px;
+        color: #333;
+        padding: 10px;
+    }
+}
+
+.mat-tooltip{
+    background-color: #ddd;
+    color : #000 !important;
+    font-weight: bold;
+}
+
+.practice .point
+{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+mat-icon{
+    font-size: 20px;
+}

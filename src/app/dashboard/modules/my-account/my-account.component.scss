@@ -1,0 +1,58 @@
+@import "assets/style/ee-style.scss";
+#price-blocks
+{
+    background: url(/assets/images/contact-form-bg.jpg) no-repeat center center;
+    background-size: cover;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: rgba(40, 167, 224, .5);
+
+    .container
+    {
+        margin: auto;
+        text-align: center;
+        max-width: 1000px;
+        mdc-card
+        {
+            padding: 40px 0 15px;
+            background-color: $EE-Blue-Color;
+            mdc-card-supporting-text{
+                color : #fff !important;
+            }
+            mdc-card-primary{
+                padding: 0;
+                mdc-card-title{
+                    margin: 20px 0;
+                    color:#fff !important;
+                    font-weight: bold;
+                }
+                img
+                {
+                    width: 35%;
+                }
+            }
+            .pics_access_all img
+            {
+                width: 20%;
+                padding-top: 12px;
+            }
+            button
+            {
+                box-shadow: none;
+                border-radius: 6px;
+                height: 30px;
+                &.btn_buy
+                {
+                    background-color: #fff;
+                    color: $EE-Blue-Color;
+                }
+                &.btn_start_test
+                {
+                    background-color: $EE-Blue-Color;
+                    color: #fff;
+                    border: 1px solid #fff;
+                }
+            }
+        }
+    }
+}

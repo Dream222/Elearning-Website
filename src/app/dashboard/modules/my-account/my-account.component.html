@@ -1,0 +1,46 @@
+<section id="price-blocks">
+    <div class="container">
+        <h2 *ngIf="user">Welcome, {{ user.full_name }}</h2>
+        <h5>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+            et
+        </h5>
+
+        <div class="mdc-layout-grid" *ngIf="areas">
+            <div class="mdc-layout-grid__inner">
+
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-phone mdc-layout-grid__cell--span-4-tablet"
+                    *ngFor="let area of areas; let i = index">
+                    <mdc-card class="area-block" [mdc-theme-dark]="false" [mdc-surface]="true" mdc-ripple>
+                        <mdc-card-primary>
+                            <div *ngIf="i == 0">
+                                <img src="assets/images/myaccount-literacy.png">
+                            </div>
+                            <div *ngIf="i == 1">
+                                <img src="assets/images/myaccount-numeracy.png">
+                            </div>
+                            <div *ngIf="i == 2">
+                                <img src="assets/images/myaccount-writing.png">
+                            </div>
+                            <mdc-card-title [large]="true">{{ area_conf.title(area.title) }}</mdc-card-title>
+                        </mdc-card-primary>
+
+                        <mdc-card-actions *ngIf="area.isUserHaveAccess">
+                            <button class="button-effect btn_start_test" (click)="startTest(area)">Start Test</button>
+                            <button *ngIf='area_conf.get_config(area.title, "buy_now")' class="button-effect btn_buy">Buy now</button>
+                        </mdc-card-actions>
+
+                        <mdc-card-actions *ngIf="!area.isUserHaveAccess">
+                            <button class="button-effect btn_start_test" (click)="startTest(area)">Start Example Test
+                            </button>
+                            <button *ngIf='area_conf.get_config(area.title, "buy_now")' class="button-effect btn_buy">Buy now</button>
+                        </mdc-card-actions>
+                    </mdc-card>
+                </div>
+            </div>
+        </div>
+        <button class="btn_my_stats button-effect" (click)="onStats()">My Stats</button>
+        <button class="btn_my_stats button-effect"><a [routerLink]="['/dashboard/admin-panel']" class="text-decoration-none cl-white">Admin Panel</a></button>
+        <button class="btn_my_stats button-effect"><a [routerLink]="['/dashboard/all-questions']" class="text-decoration-none cl-white">All Questions</a></button>
+    </div>
+</section>

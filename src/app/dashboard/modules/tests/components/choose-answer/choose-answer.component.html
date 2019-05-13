@@ -1,0 +1,50 @@
+<div class="mdc-layout-grid container" *ngIf="currentQuestion" #top>
+    <p class="font-25 text-center cl-pink">{{clockDisplay}}</p>
+    <div class="mdc-layout-grid__inner">
+        <div
+            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile">
+            <img *ngIf="currentQuestion.description_type == 'image'" [alt]="currentQuestion.description" style="max-width : 100%" [src]= "img_url + currentQuestion.description" class="opacity-animation">
+            <el-equation *ngIf="currentQuestion.description_type == 'text'" [equation]="currentQuestion.description"></el-equation>
+            <h4>Question {{ getCurrentQuestionIndex() }}</h4>
+            <el-equation [equation]="currentQuestion.text"></el-equation>
+            <div class="answers-list">
+                <mdc-form-field *ngFor="let answer of currentQuestion.answers">
+                    <mdc-radio id="anwer-{{ answer.id }}"
+                               [checked]="choosedAnswer && answer.id == choosedAnswer.id"
+                               [ngModel]="choosedAnswer"
+                               (ngModelChange)="changeAnswer(answer)"
+                               name="answers"></mdc-radio>
+                    <label for="anwer-{{ answer.id }}-input">
+                        <el-equation *ngIf="answer.type == 'text'" [equation]="answer.text"></el-equation>
+                        <img *ngIf="answer.type == 'image'" [src] = "img_url + answer.text" [alt]="answer.text">
+                    </label>
+                </mdc-form-field>
+            </div>
+
+            <button class="button-effect" [disabled]="!choosedAnswer" (click)="nextQuestion()">
+                {{ answers.length + 1 == questions.length ? 'Results' : 'Next Question' }}
+            </button>
+            <button class="button-effect" (click)='submit()'>Submit</button>
+
+        </div>
+
+        <mdc-list
+            class=" mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile questions-list"
+            [mdc-theme-dark]="false"
+            [border]="false">
+            <mdc-list-item class="question-counter back-cl-blue">
+                {{ getCurrentQuestionIndex() + '/' + questions.length }}
+            </mdc-list-item>
+            <perfect-scrollbar id="q-scroll" [scrollIndicators]="true">
+                <mdc-list-item *ngFor="let question of questions; let i = index;"
+                               [class.active]="question.id == currentQuestion.id"
+                               (click)="changeQuestion(question)" class="cursor-pointer">
+                    Question {{ i + 1 }}
+                    <mdc-icon mdc-list-item-end fontSet="fa" fontIcon="fa-check"
+                              *ngIf="question.was_answered"></mdc-icon>
+                </mdc-list-item>
+            </perfect-scrollbar>
+        </mdc-list>
+    </div>
+
+</div>

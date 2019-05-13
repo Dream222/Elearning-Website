@@ -1,0 +1,147 @@
+@import "assets/style/ee-style.scss";
+
+.admin-container {
+    background-color: #DFE7E5;
+    .admin-center {
+        margin: auto;
+        max-width: 1200px;
+        cursor: pointer;
+
+         .admin-image {
+            margin-top: 40px;
+            display: -webkit-box !important;
+            display: -webkit-flex !important;
+            display: -ms-flexbox !important;
+            -webkit-box-pack: center !important;
+            -webkit-justify-content: center !important;
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+        }
+
+        .admin-text {
+            color: #fff;
+            font-size: 1.1em;
+            display: -webkit-box !important;
+            display: -webkit-flex !important;
+            display: -ms-flexbox !important;
+            -webkit-box-pack: center !important;
+            -webkit-justify-content: center !important;
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+        }
+
+        .admin-text-black {
+            color: #000;
+            font-size: 1.1em;
+            display: -webkit-box !important;
+            display: -webkit-flex !important;
+            display: -ms-flexbox !important;
+            -webkit-box-pack: center !important;
+            -webkit-justify-content: center !important;
+            -ms-flex-pack: center !important;
+            justify-content: center !important;
+        }
+
+        .admin-row {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: 20px;
+            margin-left: 20px;
+
+            .admin-b-blue:hover, .admin-b-blue:focus {
+                -webkit-transform:scale(1.1);
+                -ms-transform:scale(1.1);
+                -moz-transform:scale(1.1);
+                -o-transform:scale(1.1);
+                transform:scale(1.1);
+                -webkit-transition:all 300ms linear;
+                -moz-transition:all 300ms linear;
+                -ms-transition:all 300ms linear;
+                -o-transition:all 300ms linear;
+                transition:all 300ms linear;
+                z-index:999;
+            }
+
+            .admin-b-yellow:hover, .admin-b-yellow:focus {
+                -webkit-transform:scale(1.1);
+                -ms-transform:scale(1.1);
+                -moz-transform:scale(1.1);
+                -o-transform:scale(1.1);
+                transform:scale(1.1);
+                -webkit-transition:all 300ms linear;
+                -moz-transition:all 300ms linear;
+                -ms-transition:all 300ms linear;
+                -o-transition:all 300ms linear;
+                transition:all 300ms linear;
+                z-index:999;
+            }
+
+            .admin-b-purple:hover, .admin-b-purple:focus {
+                -webkit-transform:scale(1.1);
+                -ms-transform:scale(1.1);
+                -moz-transform:scale(1.1);
+                -o-transform:scale(1.1);
+                transform:scale(1.1);
+                -webkit-transition:all 300ms linear;
+                -moz-transition:all 300ms linear;
+                -ms-transition:all 300ms linear;
+                -o-transition:all 300ms linear;
+                transition:all 300ms linear;
+                z-index:999;
+            }
+
+            .admin-b-white:hover, .admin-b-white:focus {
+                -webkit-transform:scale(1.1);
+                -ms-transform:scale(1.1);
+                -moz-transform:scale(1.1);
+                -o-transform:scale(1.1);
+                transform:scale(1.1);
+                -webkit-transition:all 300ms linear;
+                -moz-transition:all 300ms linear;
+                -ms-transition:all 300ms linear;
+                -o-transition:all 300ms linear;
+                transition:all 300ms linear;
+                z-index:999;
+            }
+
+            .admin-b-blue {
+                width: 550px;
+                height: 250px;
+                margin-top: 35px;
+                background-color: $EE-Blue-Color;
+            }
+            .admin-b-yellow {
+                width: 550px;
+                height: 250px;
+                margin-bottom: 35px;
+                background-color: $EE-Yellow-Color;
+            }
+
+            .admin-b-purple {
+                width: 550px;
+                height: 250px;
+                margin-top: 35px;
+                background-color: $EE-Pink-Color;
+            }
+
+            .admin-b-white {
+                width: 550px;
+                height: 250px;
+                margin-bottom: 35px;
+                background-color: #FFFFFF;
+            }
+        }
+    }
+}
+
+
+@media (max-width: 1160px) {
+    .admin-b-yellow {
+        margin-top: 35px;
+    }
+}

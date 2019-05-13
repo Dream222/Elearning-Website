@@ -1,0 +1,13 @@
+<div class="center">
+    <div class="area_header" [ngClass]="area_conf.background(area)">
+        {{area_conf.title(area)}} - {{stats_account.full_name}}
+    </div>
+    <div fxLayout fxLayout.lt-sm="column" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="center stretch">
+        <a fxFlex fxFlex.lt-sm = 'false' *ngFor="let item of area_conf.areas" [routerLink]="['/dashboard/stats', item]" class = "mdc-button" [ngClass]="[item, area_conf.background(item)]">
+            <img [src]='area_conf.image(item)' width="100">
+            <h1>{{area_conf.title(item)}}</h1>
+        </a>
+    </div>
+</div>
+<el-area *ngIf="area != 'writing'" [area]="area"></el-area>
+<el-writing *ngIf="area == 'writing'"></el-writing>

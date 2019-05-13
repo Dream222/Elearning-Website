@@ -1,0 +1,95 @@
+<mdc-toolbar
+    [flexible]="false"
+    [fixed]="false"
+    [waterfall]="false"
+    [fixedLastrow]="false"
+    [mdc-elevation]="6">
+    <mdc-toolbar-row>
+        <mdc-toolbar-section [alignStart]="true" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+            <img class="cursor-pointer" src="assets/images/logo.png" width="25%" height="100%" (click)='goHome()'>
+            <div class="text_header font-arconregular" fxFlex fxHide.lt-lg fxLayoutAlign="space-around center" fxLayoutGap="10px">
+                <a href="#" class="go-home transparent-background">HOME</a>
+                <a href="#" class="go-about transparent-background">ABOUT</a>
+                <a href="#" class="go-purchase transparent-background">PURCHASE</a>
+                <a href="#" class="go-resources transparent-background">RESOURCES</a>
+                <a href="#" class="go-contact transparent-background">CONTACT</a>
+            </div>
+            <div fxLayout fxHide.lt-lg>
+                <div *ngIf="isLoggedIn === false">
+                    <form fxLayout fxLayoutAlign="center center">
+                        <mdc-text-field
+                            [(ngModel)]="loginModel.email"
+                            label="Email"
+                            type="text"
+                            name="email"
+                            [required]="true"
+                            [dense]="false">
+                        </mdc-text-field>
+
+                        <mdc-text-field
+                            [(ngModel)]="loginModel.password"
+                            type="password"
+                            name="password"
+                            label="Password"
+                            [required]="true">
+                        </mdc-text-field>
+
+                        <button class="button-effect" [disabled]="!loginModel.email || !loginModel.password" (click)="login()">Log in
+                        </button>
+                    </form>
+                </div>
+                <div *ngIf="isLoggedIn" class="toolbar-end" fxLayout Align="center center">
+                    <button mdc-button class="transparent-background cl-black" (click)="openStats()">
+                        <mdc-icon fontSet="fa" fontIcon="fa-area-chart"></mdc-icon>
+                        Stats
+                    </button>
+                    <button mdc-button class="transparent-background cl-black" (click)="openMyAccount()">
+                        <mdc-icon fontSet="fa" fontIcon="fa-user"></mdc-icon>
+                        My Account
+                    </button>
+                    <button class="button-effect" (click)="logout()">
+                        Log out
+                    </button>
+                </div>
+            </div>
+
+            <div fxLayout fxHide.gt-md fxLayoutAlign="center center">
+                <div *ngIf="isLoggedIn">
+                    <mat-menu #manageaccount="matMenu" yPosition="below" [overlapTrigger]="false">
+                        <button mat-menu-item (click)="openStats()"><mat-icon>equalizer</mat-icon>My Stats</button>
+                        <mat-divider></mat-divider>
+                        <button mat-menu-item (click)="openMyAccount()"><mat-icon>person</mat-icon>My Account</button>
+                        <mat-divider></mat-divider>
+                        <button mat-menu-item (click)="logout()"><mat-icon>keyboard_tab</mat-icon>Log out</button>
+                    </mat-menu>
+
+                    <button mat-button [matMenuTriggerFor]= "manageaccount">
+                        <mat-icon>account_circle</mat-icon>
+                        {{getUser()}}
+                    </button>
+                </div>
+
+                <div *ngIf="!isLoggedIn">
+                    <button mat-button (click) = "popupLoginform()">Log In<mat-icon>input</mat-icon></button>
+                </div>
+                <div>
+                    <mat-menu #navigation="matMenu" yPosition="below" [overlapTrigger]="false">
+                      <button class="text-center" mat-menu-item>HOME</button>
+                      <mat-divider></mat-divider>
+                      <button class="text-center" mat-menu-item>ABOUT</button>
+                      <mat-divider></mat-divider>
+                      <button class="text-center" mat-menu-item>PURCHASE</button>
+                      <mat-divider></mat-divider>
+                      <button class="text-center" mat-menu-item>RESOURCES</button>
+                      <mat-divider></mat-divider>
+                      <button class="text-center" mat-menu-item>CONTACT</button>
+                    </mat-menu>
+
+                    <button mat-icon-button [matMenuTriggerFor]="navigation">
+                      <mat-icon>menu</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mdc-toolbar-section>
+    </mdc-toolbar-row>
+</mdc-toolbar>

@@ -1,0 +1,13 @@
+<section class="container">
+    <div fxLayout='column' fxLayoutAlign='start stretch'>
+        <div *ngIf='question' class="question">
+            <h1>{{question.text}}</h1>
+            <p>{{question.description}}</p>
+        </div>
+        <div class="test_area">
+            <textarea name="editor" id="editor" rows="30" cols="180" [(ngModel)] = "editorText"></textarea>
+            <p id="counter">TimeLeft : {{clockDisplay}}</p>
+        </div>
+        <button class="button-effect" (click)= "onSubmit()">Submit</button>
+    </div>
+</section>

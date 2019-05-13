@@ -1,0 +1,6 @@
+<section class="header-info" *ngIf="areaTitle">
+    <h4>{{ area_conf.title(areaTitle) }} - Tests</h4>
+</section>
+
+<el-choose-answer *ngIf="areaTitle && areaTitle != 'writing'" [areaTitle]='areaTitle'></el-choose-answer>
+<el-writing *ngIf="areaTitle && areaTitle == 'writing'"></el-writing>

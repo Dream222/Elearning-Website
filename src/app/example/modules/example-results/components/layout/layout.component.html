@@ -1,0 +1,7 @@
+<section class="header-info" *ngIf="areaTitle">
+    <div class="container">
+        <h4>Results</h4>
+    </div>
+</section>
+
+<el-example-choose-results *ngIf="areaTitle && areaTitle != 'writing'"></el-example-choose-results>

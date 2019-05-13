@@ -1,0 +1,68 @@
+<section class="header-info" *ngIf="areaTitle && answers">
+    <div class="mdc-layout-grid results">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell complete-time" *ngIf="timeToComplete">
+                <h4>{{ timeToComplete.h + timeToComplete.m + timeToComplete.s }}</h4>
+                <p>Time To Complete</p>
+            </div>
+            <div class="mdc-layout-grid__cell current-score">
+                <h4>{{ userCorrectAnswersCount }}/{{ answers.length }}</h4>
+                <p>Score This Time</p>
+            </div>
+            <div class="mdc-layout-grid__cell best-score">
+                <h4>2/{{ answers.length }}</h4>
+                <p>Your Best Score</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="questions" *ngIf="areaTitle && answers">
+    <mdc-card class="container" [mdc-theme-dark]="false">
+        <mdc-card-supporting-text>
+            <div class="mdc-layout-grid">
+                <div class="mdc-layout-grid__inner">
+                    <mdc-list
+                        class=" mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-mobile questions-list"
+                        [mdc-theme-dark]="false"
+                        [border]="false">
+                        <mdc-list-item class="question-counter">
+                            {{ currentQuestionIndex + '/' + answers.length }}
+                        </mdc-list-item>
+
+                        <mdc-list-item *ngFor="let answer of answers; let i = index;"
+                                       [class.active]="answer.question.id === currentQuestion.id">
+                            Question {{ i + 1 }}
+                        </mdc-list-item>
+                    </mdc-list>
+                    <div class="mdc-layout-grid__cell">
+                        <h2>{{ currentQuestion.text }}</h2>
+
+                        <p>{{ currentQuestion.description }}</p>
+
+                        <div class="answers-list">
+                            <div class="md-radio md-radio-inline" *ngFor="let answer of currentQuestion.answers">
+                                <input id="answer-{{ answer.id }}" disabled
+                                       [(ngModel)]="answers[currentQuestionIndex - 1].answer.id" [value]="answer.id"
+                                       type="radio"
+                                       name="answer">
+                                <label for="answer-{{ answer.id }}">{{ answer.text }}</label>
+                            </div>
+                        </div>
+
+                        <p>Correct answer: {{ correctAnswers[currentQuestionIndex - 1].text }}</p>
+                        {{ correctAnswers[currentQuestionIndex - 1].text }} is the correct answer because I want it to
+                        be right!
+                    </div>
+                    <div class="mdc-layout-grid__cell">
+                        {{ answers[currentQuestionIndex - 1].answer.id === correctAnswers[currentQuestionIndex - 1].id ?
+                        'You answered Correctly' : 'You answered Incorrectly' }}
+                    </div>
+                </div>
+            </div>
+        </mdc-card-supporting-text>
+        <mdc-card-actions>
+            <button class="button-effect">Next Question</button>
+        </mdc-card-actions>
+    </mdc-card>
+</section>

@@ -1,0 +1,52 @@
+<header>
+    <owl-carousel
+        [options]="{items: 1, dots:false, autoplay : true, autoplayTimeout: 9000, rewind: true, loop: true , smartSpeed:1750}"
+        [items]="images"
+        [carouselClasses]="['owl-theme', 'row', 'sliding']">
+        <div
+          class="item" *ngFor="let image of images;let i = index">
+            <div class="thumbnail-image" [ngStyle]="{ 'background-image':  'url(' + image + ')', 'background-size': '100% 750px'}">
+                <div *ngIf="i==0" class="txt_slide_header">
+                    <h2  class="font-bankgothicmdbt">ONLA STRESSING YOU OUT?</h2>
+                    <p class="font-arconregular">Our expertly written content and advanced reporting can get you back on track.</p>
+                </div>
+                <div *ngIf="i==1" class="txt_slide_header">
+                    <h2 class="font-bankgothicmdbt">Practice With Purpose</h2>
+                    <p class="font-arconregular">Get immediate, actionable feedback from your OLNA practice.</p>
+                </div>
+            </div>
+        </div>
+    </owl-carousel>
+    <div id="pic_arrow">
+    </div>
+    <div id="tab_student_school">
+        <mdc-tab-bar #formTabs (change)="formChange($event)">
+            <mdc-tab  class="font-arconregular" [active]="true">
+                For Students
+            </mdc-tab>
+            <mdc-tab  class="font-arconregular">
+                For Schools
+            </mdc-tab>
+        </mdc-tab-bar>
+        <el-students-sign-up *ngIf="showStudentsForm"></el-students-sign-up>
+        <el-schools-sign-up *ngIf="!showStudentsForm"></el-schools-sign-up>
+    </div>
+</header>
+
+<div class="mdc-layout-grid areas" #scrollarea>
+    <div class="mdc-layout-grid__inner">
+        <a *ngFor="let item of areaConf.areas; let i = index" [id]="item" (click)="onSwitch(i)" [scrollTo]="scrollarea"
+            class="mdc-button mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-phone mdc-layout-grid__cell--span-8-tablet">
+            <i></i>
+            <div>{{areaConf.title(item)}}</div>
+            <p>Click to see {{areaConf.title(item)}}</p>
+        </a>
+    </div>
+</div>
+<div>
+    <div id="area">
+        <el-literacy *ngIf="switchViews == 0"></el-literacy>
+        <el-numeracy *ngIf="switchViews == 1"></el-numeracy>
+        <el-writing *ngIf="switchViews == 2"></el-writing>
+    </div>
+</div>

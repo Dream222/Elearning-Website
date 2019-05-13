@@ -1,0 +1,13 @@
+@import "assets/style/ee-style.scss";
+select
+{
+    border: none;
+    min-width: 200px;
+    padding: 10px;
+    font-size: 14pt;
+    background-color: $EE-Light-Blue;
+    &:focus
+    {
+        outline: none;
+    }
+}
